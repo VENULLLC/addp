@@ -3,3 +3,5 @@
 *.pyo
 ~*
 *.bak
+*.egg-info
+dist

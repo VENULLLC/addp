@@ -22,29 +22,51 @@ typ_codes = {
         0x0007: "DHCP Network Configuration Request",
         0x0008: "DHCP Network Configuration Response"}
 
+MAC_ADDRESS = "MAC address"
+IP_ADDRESS = "IP address"
+NETMASK = "Netmask"
+NETWORK_NAME = "Network Name"
+DOMAIN = "Domain"
+HW_TYPE = "HW Type"
+HW_REVISION = "HW Revision"
+FIRMWARE = "Firmware"
+RESULT_MESSAGE = "Result message"
+RESULT_FLAG = "Result flag"
+IP_GATEWAY = "IP Gateway"
+CONFIGURATION_ERROR_CODE = "Configuration error code"
+DEVICE_NAME = "device name"
+REAL_PORT_NUMBER = "Real Port number"
+DNS_IP_ADDRESS = "DNS IP address"
+UNKNOWN16 = "UNKNOWN16"
+ERROR_CODE = "Error code"
+SERIAL_PORT_COUNT = "Serial Port Count"
+ENCRYPTED_REAL_PORT_NUMBER = "Encrypted Real Port number"
+UNKNOWN19 = "UNKNOWN19"
+DEVICE_ID = "Device-ID"
+ADDP_ADDR = "addp_ip"
 # {code: (desc, encoder, decoder)}
 fld_codes = {
-        0x01: ("MAC address", lambda x: struct.pack("6B", *x), lambda x: struct.unpack("6B", x)),
-        0x02: ("IP address", lambda x: struct.pack("4B", *x), lambda x: struct.unpack("4B", x)),
-        0x03: ("Netmask", lambda x: struct.pack("4B", *x), lambda x: struct.unpack("4B", x)),
-        0x04: ("Network Name", lambda x: x, lambda x: x),
-        0x05: ("Domain", lambda x: x, lambda x: x),
-        0x06: ("HW Type", lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
-        0x07: ("HW Revision", lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
-        0x08: ("Firmware", lambda x: x, lambda x: x),
-        0x09: ("Result message", lambda x: x, lambda x: x),
-        0x0a: ("Result flag", lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
-        0x0b: ("IP Gateway", lambda x: struct.pack("BBBB", *x), lambda x: struct.unpack("BBBB", x)),
-        0x0c: ("Configuration error code", lambda x: struct.pack(">H", x), lambda x: struct.unpack('>H', x)[0]),
-        0x0d: ("device name", lambda x: x, lambda x: x),
-        0x0e: ("Real Port number", lambda x: struct.pack(">L", x), lambda x: struct.unpack('>L', x)[0]),
-        0x0f: ("DNS IP address", lambda x: struct.pack("BBBB", *x), lambda x: struct.unpack("BBBB", x)),
-        0x10: ("UNKNOWN16", lambda x: struct.pack("BBBB", *x), lambda x: code_16_parser(x)),
-        0x11: ("Error code", lambda x: struct.pack("B", x), lambda x: error_codes[ord(x)]),
-        0x12: ("Serial Port Count", lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
-        0x13: ("Encrypted Real Port number", lambda x: struct.pack(">L", x), lambda x: struct.unpack('>L', x)[0]),
-        0x19: ("UNKNOWN19", lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
-        0x1a: ("Device-ID", lambda x: x, lambda x: "%08X-%08X-%08X-%08X"%struct.unpack('>4L', x))}
+	0x01: (MAC_ADDRESS, lambda x: struct.pack("6B", *x), lambda x: struct.unpack("6B", x)),
+	0x02: (IP_ADDRESS, lambda x: struct.pack("4B", *x), lambda x: struct.unpack("4B", x)),
+	0x03: (NETMASK, lambda x: struct.pack("4B", *x), lambda x: struct.unpack("4B", x)),
+	0x04: (NETWORK_NAME, lambda x: x, lambda x: x),
+	0x05: (DOMAIN, lambda x: x, lambda x: x),
+	0x06: (HW_TYPE, lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
+	0x07: (HW_REVISION, lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
+	0x08: (FIRMWARE, lambda x: x, lambda x: x),
+	0x09: (RESULT_MESSAGE, lambda x: x, lambda x: x),
+	0x0a: (RESULT_FLAG, lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
+	0x0b: (IP_GATEWAY, lambda x: struct.pack("BBBB", *x), lambda x: struct.unpack("BBBB", x)),
+	0x0c: (CONFIGURATION_ERROR_CODE, lambda x: struct.pack(">H", x), lambda x: struct.unpack('>H', x)[0]),
+	0x0d: (DEVICE_NAME, lambda x: x, lambda x: x),
+	0x0e: (REAL_PORT_NUMBER, lambda x: struct.pack(">L", x), lambda x: struct.unpack('>L', x)[0]),
+	0x0f: (DNS_IP_ADDRESS, lambda x: struct.pack("BBBB", *x), lambda x: struct.unpack("BBBB", x)),
+	0x10: (UNKNOWN16, lambda x: struct.pack("BBBB", *x), lambda x: code_16_parser(x)),
+	0x11: (ERROR_CODE, lambda x: struct.pack("B", x), lambda x: error_codes[ord(x)]),
+	0x12: (SERIAL_PORT_COUNT, lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
+	0x13: (ENCRYPTED_REAL_PORT_NUMBER, lambda x: struct.pack(">L", x), lambda x: struct.unpack('>L', x)[0]),
+	0x19: (UNKNOWN19, lambda x: struct.pack("B", x), lambda x: struct.unpack("B", x)[0]),
+	0x1a: (DEVICE_ID, lambda x: x, lambda x: "%08X-%08X-%08X-%08X"%struct.unpack('>4L', x))}
 
 error_codes = {
         0x00: "Success",
