@@ -33,7 +33,7 @@ if __name__ == "__main__":
 		try:
 			data, addr = sock.recvfrom(2048)
 		except KeyboardInterrupt:
-			print 'Exiting...'
+			print('Exiting...')
 			sys.exit(0)
 
 		if data is None or data == '':
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 		info = parse_frame(data)
 
 		if info:
-			print 'Responing to discover from', addr
+			print('Responing to discover from', addr)
 			ret = build_response(info)
 			if ret and ret != "":
 				sock.sendto(ret, addr)

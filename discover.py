@@ -30,18 +30,18 @@ def send_discovery():
 
 	responses = []
 	while True:
-		try:
-			data, addr = sock.recvfrom(2048)
-		except:
-			break
+            try:
+                data, addr = sock.recvfrom(2048)
+            except:
+                break
 
-		if data is None or data == '':
-			break
+            if data is None or data == '':
+                break
 
-		info = parse_frame(data)
-		if info:
-			info['addp_ip'] = addr[0]
-			responses.append(info)
+            info = parse_frame(data)
+            if info:
+                info['addp_ip'] = addr[0]
+                responses.append(info)
 
 	sock.close()
 	return responses
